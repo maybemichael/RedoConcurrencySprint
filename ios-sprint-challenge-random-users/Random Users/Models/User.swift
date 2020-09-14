@@ -12,7 +12,7 @@ struct UserResults: Codable {
     var results: [User]
 }
 
-struct User: Codable {
+struct User: Equatable, Hashable, Codable {
     let name: String
     let number: String
     let email: String
@@ -52,5 +52,9 @@ struct User: Codable {
         self.email = email
         self.thumbnail = URL(string: thumbnail)!
         self.fullSize = URL(string: fullSize)!
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

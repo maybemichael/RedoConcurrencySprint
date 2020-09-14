@@ -34,6 +34,7 @@ class FetchUserPhotoOperation: ConcurrentOperation {
     
     override func cancel() {
         dataTask?.cancel()
+        state = .isFinished
     }
     
     init(user: User) {
